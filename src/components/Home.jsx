@@ -29,24 +29,28 @@ function Home() {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', padding: 20 }}>
-            <div style={{ flex: 1 }}>
-                {premieres.map((premiere, index) => (
-                    <img
-                        key={index}
-                        src={premiere.image}
-                        alt={premiere.description}
-                        style={{ width: '100%', cursor: 'pointer' }}
-                        onClick={() => navigate('/login')}
-                    />
-                ))}
-            </div>
-            <div style={{ flex: 1 }}>
-                {premieres.map((premiere, index) => (
-                    <p key={index}>{premiere.description}</p>
+        <>
+        <div className="p-10">
+            <div className="flex">
+                {premieres.map((premiere, index) => (   
+                    // eslint-disable-next-line react/jsx-key
+                    <div className="bg-white w-1/3 shadow rounded-lg overflow-hidden m-3">
+                        <img
+                            key={index}
+                            src={premiere.image}
+                            alt={premiere.description}
+                            className="object-cover h-80 w-full cursor-pointer"
+                            onClick={() => navigate('/login')}
+                        />
+                        <div className="p-6">
+                            <span className="block text-slate-400 font-semibold text-sm">{premiere.description}</span>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>
+        
+        </>
     );
 }
 
