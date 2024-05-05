@@ -34,42 +34,57 @@ function Dulceria() {
     const handleSeleccion = (producto) => {
         const index = seleccionados.findIndex((p) => p.name === producto.name);
         if (index !== -1) {
-            // Si el producto ya está seleccionado, lo eliminamos de la lista de seleccionados
             const nuevosSeleccionados = [...seleccionados];
             nuevosSeleccionados.splice(index, 1);
             setSeleccionados(nuevosSeleccionados);
         } else {
-            // Si el producto no está seleccionado, lo agregamos a la lista de seleccionados
             setSeleccionados([...seleccionados, producto]);
         }
     };
 
     const calcularTotal = () => {
-        // Calculamos el total sumando los precios de los productos seleccionados
         const totalPagar = seleccionados.reduce((total, producto) => total + parseFloat(producto.price), 0); // Convertimos el precio a número
         setTotal(totalPagar);
     };
 
     const handleContinuar = () => {
-        // Aquí podrías navegar a la pantalla de Pago
         navigate('/pago', { state: { total: total } });    
     };
 
     return (
-        <div>
-            <h2>Dulcería</h2>
-            <ul>
+        <div className="p-5">
+            <h2 className="bg-blue-500 text-white text-2xl font-bold text-center mb-4 py-2 rounded">
+                Dulcería
+            </h2>            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {Array.isArray(productos) && productos.map((producto, index) => (
-                    <li key={index}>
-                        <input type="checkbox" checked={seleccionados.some((p) => p.name === producto.name)} onChange={() => handleSeleccion(producto)} />
-                        <span>{producto.name}</span>
-                        <span>{producto.description}</span>
-                        <span>{producto.price}</span>
-                    </li>
+                    <div 
+                        key={index} 
+                        className="card bg-white rounded-lg shadow-md hover:shadow-xl hover:bg-blue-50 transition duration-300 ease-in-out p-4"
+                    >
+                        <label className="flex items-center space-x-2 cursor-pointer">
+                            <input 
+                                type="checkbox" 
+                                checked={seleccionados.some((p) => p.name === producto.name)}
+                                onChange={() => handleSeleccion(producto)}
+                                className="form-checkbox h-5 w-5"
+                            />
+                            <span className="text-lg font-semibold">{producto.name}</span>
+                        </label>
+                        <p className="text-gray-600">{producto.description}</p>
+                        <p className="text-gray-800 font-bold">${producto.price}</p>
+                    </div>
                 ))}
-            </ul>
-            <p>Total a pagar: {total}</p>
-            <button onClick={handleContinuar}>Continuar</button>
+            </div>
+            <div className="text-right mt-4">
+                <p className="text-lg font-bold">Total a pagar: ${total.toFixed(2)}</p>
+                <button 
+                    onClick={handleContinuar} 
+                    className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Continuar
+                </button>
+            </div>
         </div>
     );
 }

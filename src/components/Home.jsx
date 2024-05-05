@@ -15,7 +15,7 @@ function Home() {
                 return response.json();
             })
             .then(data => {
-                setPremieres(data.premieres || []);  // Aseguramos que siempre sea un array
+                setPremieres(data.premieres || []); 
                 setIsLoading(false);
             })
             .catch(error => {

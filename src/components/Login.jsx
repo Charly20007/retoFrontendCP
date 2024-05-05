@@ -49,21 +49,21 @@ function Login() {
      <>
        <div className="flex items-center justify-center w-full lg:p-12">
          <div className="flex items-center xl:p-10">
-           <form className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+           <div className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
              <h2 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Iniciar Sesión</h2>
-             <a className="flex items-center justify-center w-full py-4  text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
+             <div className="bg-gray-300 flex items-center justify-center w-full py-4 mb-3  text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
                <img className="h-5 mr-2"
                     src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
                     alt=""/>
                <button onClick={handleGoogleLogin}>Iniciar sesión con Google</button>
-             </a>
-             <a className="flex items-center justify-center w-full  text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
+             </div>
+             <div className="bg-gray-300 py-4 flex items-center justify-center w-full  text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
                <button onClick={handleGuestLogin}>Continuar como Invitado</button>
-             </a>
-             {userData && (
+             </div>
+             {userData &&  (
                  <WelcomePopup userName={userData.displayName} />
              )}
-           </form>
+           </div>
 
          </div>
        </div>

@@ -53,52 +53,52 @@ function Pago() {
 
             console.log('Respuesta del servicio complete:', responseComplete.data);
 
-            // Aquí puedes mostrar el pop-up de "compra correcta" o una pantalla de mensaje de compra exitosa
+            // pop-up de "compra correcta" pantalla de mensaje de compra exitosa
         } catch (error) {
             console.error('Error al procesar el pago con PayU:', error);
         }
     };
 
     return (
-        <div>
-            <h2>Pago</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="cardNumber">Número de tarjeta:</label>
-                    <input type="text" id="cardNumber" name="cardNumber" value={formData.cardNumber} onChange={handleChange} />
+        <div className="p-8">
+            <h2 className="text-2xl font-bold text-center mb-6">Proceso de Pago</h2>
+            <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+                <div className="mb-4">
+                    <label htmlFor="cardNumber" className="block text-gray-700 text-sm font-bold mb-2">Número de tarjeta:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" value={formData.cardNumber} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="expirationDate">Fecha de expiración:</label>
-                    <input type="text" id="expirationDate" name="expirationDate" value={formData.expirationDate} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="expirationDate" className="block text-gray-700 text-sm font-bold mb-2">Fecha de expiración:</label>
+                    <input type="text" id="expirationDate" name="expirationDate" value={formData.expirationDate} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="cvv">CVV:</label>
-                    <input type="text" id="cvv" name="cvv" value={formData.cvv} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="cvv" className="block text-gray-700 text-sm font-bold mb-2">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" value={formData.cvv} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="name">Nombre:</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="documentType">Tipo de documento:</label>
-                    <input type="text" id="documentType" name="documentType" value={formData.documentType} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="documentType" className="block text-gray-700 text-sm font-bold mb-2">Tipo de documento:</label>
+                    <input type="text" id="documentType" name="documentType" value={formData.documentType} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div>
-                    <label htmlFor="documentNumber">Número de documento:</label>
-                    <input type="text" id="documentNumber" name="documentNumber" value={formData.documentNumber} onChange={handleChange} />
+                <div className="mb-4">
+                    <label htmlFor="documentNumber" className="block text-gray-700 text-sm font-bold mb-2">Número de documento:</label>
+                    <input type="text" id="documentNumber" name="documentNumber" value={formData.documentNumber} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <button type="submit">Pagar ${total}</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Pagar ${total.toFixed(2)}</button>
             </form>
         </div>
     );
 }
 
 Pago.propTypes = {
-    location: PropTypes.object.isRequired // Asegúrate de tener esta prop en tu PropTypes
+    location: PropTypes.object.isRequired
 };
 
 export default Pago;
