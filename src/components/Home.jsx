@@ -15,7 +15,7 @@ function Home() {
                 return response.json();
             })
             .then(data => {
-                setPremieres(data.premieres || []); 
+                setPremieres(data.premieres || []);  // Aseguramos que siempre sea un array
                 setIsLoading(false);
             })
             .catch(error => {
@@ -30,19 +30,17 @@ function Home() {
 
     return (
         <>
-        <div className="p-10">
-            <div className="flex">
+         <div className="flex justify-center p-4 md:p-10">
+            <div className="flex flex-wrap justify-center">
                 {premieres.map((premiere, index) => (   
-                    // eslint-disable-next-line react/jsx-key
-                    <div className="bg-white w-1/3 shadow rounded-lg overflow-hidden m-3">
+                    <div key={index} className="bg-white w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 shadow rounded-lg overflow-hidden m-3">
                         <img
-                            key={index}
                             src={premiere.image}
                             alt={premiere.description}
-                            className="object-cover h-80 w-full cursor-pointer"
+                            className="object-cover h-56 sm:h-64 lg:h-72 xl:h-80 w-full cursor-pointer"
                             onClick={() => navigate('/login')}
                         />
-                        <div className="p-6">
+                        <div className="p-4">
                             <span className="block text-slate-400 font-semibold text-sm">{premiere.description}</span>
                         </div>
                     </div>
