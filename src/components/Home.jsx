@@ -16,6 +16,7 @@ function Home() {
             })
             .then(data => {
                 setPremieres(data.premieres || []); 
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
