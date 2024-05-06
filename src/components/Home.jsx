@@ -15,8 +15,7 @@ function Home() {
                 return response.json();
             })
             .then(data => {
-                setPremieres(data.premieres || []);  // Aseguramos que siempre sea un array
-                setIsLoading(false);
+                setPremieres(data.premieres || []); 
             })
             .catch(error => {
                 console.error('Error fetching data:', error);

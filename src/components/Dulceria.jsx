@@ -2,7 +2,7 @@ import  { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Dulceria() {
-    const navigate = useNavigate(); // Obtiene la función de navegación
+    const navigate = useNavigate();
 
     const [productos, setProductos] = useState([]);
     const [seleccionados, setSeleccionados] = useState([]);
@@ -22,7 +22,7 @@ function Dulceria() {
             const response = await fetch('https://cp-staging.onrender.com/v1/candystore');
             if (response.ok) {
                 const data = await response.json();
-                setProductos(data.items); // Actualizamos para usar el arreglo de items
+                setProductos(data.items); 
             } else {
                 console.error('Error al obtener los productos:', response.status);
             }
@@ -43,7 +43,7 @@ function Dulceria() {
     };
 
     const calcularTotal = () => {
-        const totalPagar = seleccionados.reduce((total, producto) => total + parseFloat(producto.price), 0); // Convertimos el precio a número
+        const totalPagar = seleccionados.reduce((total, producto) => total + parseFloat(producto.price), 0);
         setTotal(totalPagar);
     };
 
