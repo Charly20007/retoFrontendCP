@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Pago() {
     const location = useLocation();
 
     const total = location.state.total;
+    const navigate = useNavigate();
+
 
     const [formData, setFormData] = useState({
         cardNumber: '',
@@ -27,35 +28,23 @@ function Pago() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responsePago = await axios.post('URL_DE_PAGO_DE_PAYU', {
-                apiKey: 'TU_API_KEY_DE_PAYU',
-                apiLogin: 'TU_LOGIN_DE_PAYU',
-                creditCardNumber: formData.cardNumber,
-                creditCardExpirationDate: formData.expirationDate,
-                creditCardSecurityCode: formData.cvv,
-                payerEmail: formData.email,
-                payerFullName: formData.name,
-                payerDNI: formData.documentNumber,
-                payerDocumentType: formData.documentType,
-                value: total
-            });
-
-            const operationDate = responsePago.data.transactionResponse.operationDate;
-            const transactionId = responsePago.data.transactionResponse.transactionId;
-
             const responseComplete = await axios.post('https://cp-staging.onrender.com/v1/complete', {
                 name: formData.name,
                 mail: formData.email,
                 dni: formData.documentNumber,
-                operation_date: operationDate,
-                transactionId: transactionId
+                operation_date: Date.now(),
+                transactionId: 'ID_TRANSACCION' 
             });
 
-            console.log('Respuesta del servicio complete:', responseComplete.data);
-
-            // pop-up de "compra correcta" pantalla de mensaje de compra exitosa
+            if (responseComplete.data.resul_code === "0") {
+                alert('¡Compra exitosa!');
+                navigate('/');
+            } else {
+                alert('Ha ocurrido un error al procesar la compra.');
+            }
         } catch (error) {
-            console.error('Error al procesar el pago con PayU:', error);
+            console.error('Error al procesar la compra:', error);
+            alert('Ha ocurrido un error al procesar la compra.');
         }
     };
 
@@ -102,4 +91,3 @@ Pago.propTypes = {
 };
 
 export default Pago;
-
